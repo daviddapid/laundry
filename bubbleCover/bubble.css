@@ -1,0 +1,116 @@
+:root {
+  --bubbles: url("https://contentservice.mc.reyrey.net/image_v1.0.0/?id=fd9933b3-b13a-51d7-bd23-72e3cce8d659&637975576050571648");
+}
+
+.intro {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  background: url("https://contentservice.mc.reyrey.net/image_v1.0.0/?id=80ff633d-8eaa-5f01-95bd-081b34086bb7&637975571952246836"),
+    dodgerblue;
+  background-size: auto auto;
+  background-position: 50% 100%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  font-family: SYSTEM-UI;
+  padding-inline: 30px;
+}
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.intro h1 {
+  max-width: 400px;
+  text-align: center;
+  color: navy;
+  border-radius: 5px;
+  padding: calc(50vh - 2rem) 0;
+  display: block;
+  margin: 0;
+  line-height: 100%;
+}
+
+#butt-dive-in {
+  width: 70vw;
+  height: 5em;
+  max-width: 100%;
+  background-color: white;
+  border: none;
+  border-radius: 15px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 21px white;
+  cursor: pointer;
+  font-weight: bold;
+}
+#butt-dive-in .outer{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: whitesmoke;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 1s;
+}
+#butt-dive-in .inner{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+#butt-dive-in:hover .outer{
+  width: 0;
+  color: transparent;
+}
+
+#bubble_machine {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.bubble {
+  -webkit-tap-highlight-color: transparent;
+  width: 100px;
+  aspect-ratio: 1 / 1;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  pointer-events: all;
+  cursor: pointer;
+  filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.05));
+  transform: translateX(-50%);
+  animation: bubble_float 10s linear forwards;
+}
+@keyframes bubble_float {
+  100% {
+    top: -130px;
+    transform: translateX(-50%) rotate(360deg);
+  }
+}
+
+.bubble:after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-image: var(--bubbles);
+  background-size: auto 100%;
+  background-position: 0 0;
+}
+.pop_bubble:after {
+  animation: pop_bubble 0.3s steps(6) forwards;
+}
+@keyframes pop_bubble {
+  100% {
+    transform: scale(2);
+    background-position: -600% 0;
+  }
+}

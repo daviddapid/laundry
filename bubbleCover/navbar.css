@@ -1,0 +1,143 @@
+nav #nav-logo{
+    text-align: center;
+    font-family: mySerif;
+}
+nav #bussiness{
+    font-size: clamp(12px, 3.5vw, 1.17em);
+}
+@font-face {
+    font-family: mySerif;
+    src: url(../font/PlayfairDisplayRegular-ywLOY.ttf);
+}
+
+/* =================
+    HAMBURGER + MODAL 
+====================*/
+.hamburger{
+    justify-self: end;
+}
+.hamburger .modal-button{
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+}
+.hamburger .strip{
+    width: 30px;
+    height: 3px;
+    border-radius: 19px;
+    background-color: black;
+}
+.hamburger .modal{
+    --kadarBlur : 2.5px;
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    display: none;
+}
+/* ACTIVE STATE */
+.hamburger .modal.active{
+    display: block;
+    animation: blurIn 1s forwards;
+}
+.hamburger .modal .modal-content{
+    width: 100%;
+    max-width: 470px;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-color: white;
+    animation: slide 1s;
+}
+.hamburger .close-modal{
+    position: absolute;
+    right: 25px;
+    top: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    animation: rotate 1s;
+}
+
+/* CLOSE STATE */
+.hamburger .modal.close{
+    animation: blurOut 1s;
+}
+.hamburger .modal.close .modal-content{
+    animation: slideBack 1s forwards;
+}
+.hamburger .modal.close .close-modal{
+    animation: rotateBack 1s forwards;
+}
+
+
+@keyframes slide {
+    from{
+        width: 0;
+    }to{
+        width: 100%;
+        max-width: 470px;
+    }
+}
+@keyframes blurIn{
+    to{
+        backdrop-filter: blur(var(--kadarBlur));
+    }
+}
+@keyframes blurOut{
+    from{
+        backdrop-filter: blur(var(--kadarBlur));
+    }
+    to{
+        backdrop-filter: blur(0);
+    }
+}
+@keyframes rotate {
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+        transform: rotate(360deg);
+    }
+}
+@keyframes rotateBack {
+    from{
+        opacity: 1;
+    }
+    to{
+        opacity: 0;
+        transform: rotate(360deg);
+        right: -10px;
+    }
+}
+@keyframes slideBack{
+    to{
+        width: 0;
+    }
+}
+
+.close-modal .strip:first-child{
+    transform: rotate(45deg);
+    position: absolute;
+}
+.close-modal .strip:last-child{
+    transform: rotate(-45deg);
+    position: absolute;
+}
+
+.hamburger .nav-links{
+    text-align: center;
+    margin-top: 78px;
+}
+.hamburger .nav-links .link-item{
+    margin-bottom: 19px;
+    display: block;
+    text-decoration: none;
+   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
